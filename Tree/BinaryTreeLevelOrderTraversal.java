@@ -13,6 +13,8 @@
  *     }
  * }
  */
+
+//Breadth First Search
 class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> result = new ArrayList<>();
@@ -45,4 +47,34 @@ class Solution {
         return result;
         
     }
+}
+
+//Depth First Search
+class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        
+        levelOrderTraverse(result, root, 0);
+        
+        return result;
+        
+    }
+    
+    private void levelOrderTraverse(List<List<Integer>> result, TreeNode root, int level) {
+        if (root == null) {
+            return;
+        }
+        if (level >= result.size()) {
+            result.add(new ArrayList<>());
+        }
+        
+        result.get(level).add(root.val);
+        
+        levelOrderTraverse(result, root.left, level+1);
+        levelOrderTraverse(result, root.right, level+1);
+    }
+    
 }
